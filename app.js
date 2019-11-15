@@ -7,7 +7,7 @@ var ForecastIo = require('forecastio');
 // Create an Express application
 var app = express();
 // Create an ForecastIO object with your API key
-var weather = new ForecastIo('e6d2251de8df54d188c1e9fe3d4d3394');
+var weather = new ForecastIo('745c7515a99f2d2e7c02c371cb29809c');
 
 // Serve static files out of public
 app.use(express.static(path.resolve(__dirname,'public')));
@@ -21,14 +21,14 @@ app.get('/', function (req,res) {
     res.render('index');
 });
 
-
+console.log('test');
 app.get(/^\/(\d{5})$/, function (req,res,next) {
     // Capture the specified ZIP Code and pass it as req.params[0]
     var zipcode = req.params[0];
     // Grab location data with the ZIP Code
     var location = zipdb.zipcode(zipcode);
     // Return {} when no results are found. Continue if the object isn't empty
-    if(!location.zipcode){
+    if(!location.zipcode){        
         next();
         return;
     }
